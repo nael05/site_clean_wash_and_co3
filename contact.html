@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="pictures/logo_clean_wash__and_co.webp" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Clean Wash & Co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="navbar-brand">
+                <img src="pictures/logo_clean_wash__and_co_cercle.webp" alt="Logo" class="logo-image">
+                <div class="logo-text"><span class="logo-clean">CLEAN</span><span class="logo-wash">WASH</span></div>
+            </a>
+            <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="processus.html" class="nav-link">Processus</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contact-hero" style="padding-top: 100px; text-align: center;">
+        <div class="container">
+            <h1 class="section-title">Prendre <span class="highlight">Rendez-vous</span></h1>
+            <p>Réponse rapide garantie !</p>
+            
+            <div class="contact-quick-actions" style="display: flex; flex-direction: column; gap: 15px; margin: 2rem auto; max-width: 400px;">
+                <a href="tel:0650782684" class="btn btn-primary btn-full" style="font-size: 1.2rem; padding: 15px;">📞 Appeler : 06 50 78 26 84</a>
+                <a href="https://wa.me/33650782684" class="btn btn-secondary btn-full" style="font-size: 1.2rem; padding: 15px; background: #25D366; color: white; border:none;">💬 Message WhatsApp</a>
+                <a href="https://instagram.com/cleanwashandcoo" class="btn btn-secondary btn-full" style="font-size: 1.2rem; padding: 15px; background: #E1306C; color: white; border:none;">📸 Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form-section" style="padding: 2rem 0;">
+        <div class="container" style="max-width: 600px;">
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Ou envoyez-nous un e-mail</h3>
+            <form action="mailto:cleanwashandco@gmail.com" method="POST" enctype="text/plain" class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="Nom" placeholder="Votre Nom" required>
+                </div>
+                <div class="form-group">
+                    <select id="service" name="Service" required style="width: 100%; padding: 12px; background: var(--dark); border: 1px solid var(--primary); color: white; border-radius: 4px;">
+                        <option value="">Sélectionnez un service...</option>
+                        <option value="Auto">Nettoyage Automobile</option>
+                        <option value="Domicile">Nettoyage à Domicile (Canapé, Matelas...)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="Message" rows="4" placeholder="Votre demande (marque du véhicule, taille du canapé, ville...)" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Envoyer la demande</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 Clean Wash & Co.</p></div></div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -21,8 +21,6 @@ window.addEventListener('scroll', () => {
     }
 
     if (!navLinks.classList.contains('active')) {
-        
-        
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
@@ -34,23 +32,25 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile menu toggle
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    
-    // Animate hamburger
-    const spans = navToggle.querySelectorAll('span');
-    if (navLinks.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translateY(10px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translateY(-10px)';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
-    }
-});
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Animate hamburger
+        const spans = navToggle.querySelectorAll('span');
+        if (navLinks.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translateY(10px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translateY(-10px)';
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+            document.body.style.overflow = ''; 
+        }
+    });
+}
 
 // Active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
@@ -81,9 +81,11 @@ navLinkElements.forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         const spans = navToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+        if(spans.length > 0) {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
         document.body.style.overflow = '';
     });
 });
@@ -92,20 +94,128 @@ navLinkElements.forEach(link => {
 // SCROLL TO TOP BUTTON
 // ===================================
 const scrollTopBtn = document.getElementById('scrollTop');
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ===================================
+// 🌟 NOUVEAU: FILTRE CATÉGORIES (Auto / Domicile)
+// ===================================
+window.filterCategory = function(category) {
+    const btns = document.querySelectorAll('.cat-btn');
+    btns.forEach(btn => btn.classList.remove('active'));
+    
+    const activeBtn = Array.from(btns).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(category));
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+
+    const cards = document.querySelectorAll('.service-card-single');
+    cards.forEach(card => {
+        if (card.getAttribute('data-type') === category) {
+            card.style.display = 'block';
+            card.style.animation = 'none';
+            card.offsetHeight; // Force le reflow
+            card.style.animation = 'fadeIn 0.5s ease forwards';
+        } else {
+            card.style.display = 'none';
+            card.classList.remove('flipped'); // Remet à l'endroit si masqué
+        }
+    });
+};
+
+// Activer le filtre par défaut si on est sur la page
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.category-selector')) {
+        filterCategory('auto');
     }
 });
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+// ===================================
+// 🌟 NOUVEAU: RETOURNEMENT DES CARTES (FLIP)
+// ===================================
+window.toggleCardFlip = function(btn) {
+    const wrapper = btn.closest('.flip-card-wrapper');
+    if(wrapper) {
+        wrapper.classList.toggle('flipped');
+    }
+};
+
+// ===================================
+// 🌟 NOUVEAU: SUPPLÉMENTS (Afficher/Masquer)
+// ===================================
+window.toggleCardSupp = function(button) {
+    const content = button.nextElementSibling;
+    content.classList.toggle('active');
+    
+    const icon = button.querySelector('i');
+    if (icon) {
+        icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+};
+
+// ===================================
+// COMPARISON SLIDER (Fusionné & Optimisé)
+// ===================================
+const sliders = document.querySelectorAll('.comparison-slider');
+
+sliders.forEach(slider => {
+    const beforeImage = slider.querySelector('.c-before');
+    const handle = slider.querySelector('.c-handle');
+    let isDown = false;
+
+    const move = (e) => {
+        if (!isDown) return;
+        
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        const x = clientX - rect.left;
+        
+        let position = Math.max(0, Math.min(x, rect.width));
+        let percentage = (position / rect.width) * 100;
+
+        beforeImage.style.width = `${percentage}%`;
+        handle.style.left = `${percentage}%`;
+    };
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        move(e);
     });
+    
+    window.addEventListener('mouseup', () => { isDown = false; });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        move(e);
+        e.preventDefault(); 
+    });
+
+    slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        move(e);
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { isDown = false; });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        move(e);
+        if(e.cancelable) e.preventDefault(); // Empêche le défilement de la page
+    }, { passive: false });
 });
 
 // ===================================
@@ -123,14 +233,13 @@ function animateCounters() {
     const rect = statsSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     
-    // Trigger when section is 60% visible
     if (rect.top <= windowHeight * 0.8 && rect.bottom >= 0) {
         hasAnimated = true;
         
         statNumbers.forEach(stat => {
             const target = parseInt(stat.getAttribute('data-target'));
-            const duration = 2000; // 2 seconds
-            const increment = target / (duration / 16); // 60fps
+            const duration = 2000; 
+            const increment = target / (duration / 16); 
             let current = 0;
             
             const updateCounter = () => {
@@ -149,7 +258,6 @@ function animateCounters() {
 }
 
 window.addEventListener('scroll', animateCounters);
-// Also try on load in case it's already visible
 window.addEventListener('load', animateCounters);
 
 // ===================================
@@ -157,7 +265,6 @@ window.addEventListener('load', animateCounters);
 // ===================================
 function initAOS() {
     const elements = document.querySelectorAll('[data-aos]');
-    
     if (elements.length === 0) return;
     
     const observer = new IntersectionObserver((entries) => {
@@ -167,7 +274,6 @@ function initAOS() {
                 setTimeout(() => {
                     entry.target.classList.add('aos-animate');
                 }, delay);
-                // Optionally unobserve after animation
                 observer.unobserve(entry.target);
             }
         });
@@ -181,7 +287,6 @@ function initAOS() {
     });
 }
 
-// Initialize AOS when DOM is fully loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAOS);
 } else {
@@ -189,78 +294,17 @@ if (document.readyState === 'loading') {
 }
 
 // ===================================
-// COMPARISON SLIDER
-// ===================================
-const sliders = document.querySelectorAll('.comparison-slider');
-
-sliders.forEach(slider => {
-    // Elements
-    const beforeImage = slider.querySelector('.c-before');
-    const beforeImgTag = beforeImage.querySelector('img');
-    const handle = slider.querySelector('.c-handle');
-    let isDown = false;
-
-    // Functions
-    const move = (e) => {
-        if (!isDown) return;
-        
-        // Get dimensions
-        const rect = slider.getBoundingClientRect();
-        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        const x = clientX - rect.left;
-        
-        // Boundaries
-        let position = Math.max(0, Math.min(x, rect.width));
-        let percentage = (position / rect.width) * 100;
-
-        // Apply styles
-        beforeImage.style.width = `${percentage}%`;
-        handle.style.left = `${percentage}%`;
-    };
-
-    // Event Listeners - Mouse
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        move(e);
-    });
-    
-    window.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        move(e);
-        e.preventDefault(); 
-    });
-
-    // Event Listeners - Touch (Mobile)
-    slider.addEventListener('touchstart', (e) => {
-        isDown = true;
-        move(e);
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-        isDown = false;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        move(e);
-    }, { passive: false });
-});
-
-// ===================================
 // SMOOTH SCROLL
 // ===================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#' || href === '') return;
         
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             const offsetTop = target.offsetTop - 80;
-            
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -276,7 +320,6 @@ const spheres = document.querySelectorAll('.gradient-sphere');
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    
     spheres.forEach((sphere, index) => {
         const speed = 0.1 + (index * 0.05);
         const yPos = -(scrolled * speed);
@@ -285,35 +328,23 @@ window.addEventListener('scroll', () => {
 });
 
 // ===================================
-// CURSOR EFFECT (Optional - Desktop only)
+// CURSOR EFFECT (Desktop only)
 // ===================================
 if (window.innerWidth > 768) {
     const cursor = document.createElement('div');
     cursor.classList.add('custom-cursor');
     cursor.style.cssText = `
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--primary);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-        opacity: 0;
+        position: fixed; width: 20px; height: 20px; border: 2px solid var(--primary);
+        border-radius: 50%; pointer-events: none; z-index: 9999;
+        transition: transform 0.2s ease, opacity 0.2s ease; opacity: 0;
     `;
     document.body.appendChild(cursor);
     
     const cursorDot = document.createElement('div');
     cursorDot.style.cssText = `
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        background: var(--primary);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transition: transform 0.1s ease;
-        opacity: 0;
+        position: fixed; width: 6px; height: 6px; background: var(--primary);
+        border-radius: 50%; pointer-events: none; z-index: 10000;
+        transition: transform 0.1s ease; opacity: 0;
     `;
     document.body.appendChild(cursorDot);
     
@@ -333,15 +364,12 @@ if (window.innerWidth > 768) {
         cursorDot.style.opacity = '0';
     });
     
-    // Interactive elements
     const interactiveElements = document.querySelectorAll('a, button, input, select, textarea');
-    
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(1.5)';
             cursor.style.borderColor = 'var(--primary-light)';
         });
-        
         el.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
             cursor.style.borderColor = 'var(--primary)';
@@ -361,7 +389,6 @@ if (window.innerWidth > 768) {
         
         requestAnimationFrame(animateCursor);
     }
-    
     animateCursor();
 }
 
@@ -373,9 +400,11 @@ if ('IntersectionObserver' in window) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                imageObserver.unobserve(img);
+                if(img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
             }
         });
     });
@@ -389,29 +418,13 @@ if ('IntersectionObserver' in window) {
 // INITIALIZE ON LOAD
 // ===================================
 window.addEventListener('load', () => {
-    // Hide preloader if exists
     const preloader = document.querySelector('.preloader');
     if (preloader) {
         preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 300);
+        setTimeout(() => { preloader.style.display = 'none'; }, 300);
     }
-    
     updateActiveLink();
-    animateCounters();
 });
 
 console.log('%c Clean Wash & Co ', 'background: linear-gradient(135deg, #00f0ff, #00b8cc); color: #050814; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 5px;');
-console.log('%c Site développé avec passion 🚀 ', 'color: #00f0ff; font-size: 14px;');
-
-function toggleCardSupp(button) {
-    const content = button.nextElementSibling;
-    
-    content.classList.toggle('active');
-    
-    const icon = button.querySelector('i');
-    if (icon) {
-        icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-}
+console.log('%c Site mis à jour avec succès 🚀 ', 'color: #00f0ff; font-size: 14px;');

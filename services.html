@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="pictures/logo_clean_wash__and_co.webp" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Découvrez les prestations premium de Clean Wash & Co : nettoyage intérieur/extérieur de voiture, et entretien de vos canapés, matelas et tapis à domicile.">
+    <meta name="keywords" content="tarifs nettoyage auto, nettoyage express, lustrage carrosserie, nettoyage canapé domicile">
+    <meta name="author" content="Clean Wash & Co">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nos Prestations & Tarifs | Clean Wash & Co">
+    <meta property="og:description" content="Découvrez nos services de nettoyage auto à Jouy-le-Moutier (95) et à domicile partout en Île-de-France.">
+
+    <title>Nos Prestations | Clean Wash & Co - Nettoyage Automobile & Domicile</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="navbar-brand">
+                <img src="pictures/logo_clean_wash__and_co_cercle.webp" alt="Logo Clean Wash & Co" class="logo-image">
+                <div class="logo-text">
+                    <span class="logo-clean">CLEAN</span>
+                    <span class="logo-wash">WASH</span>
+                    <span class="logo-co">& CO</span>
+                </div>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="processus.html" class="nav-link">Notre Processus</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main style="position: relative; min-height: 100vh; overflow: hidden;">
+        <div class="hero-background">
+            <div class="grid-overlay"></div>
+            <div class="gradient-sphere sphere-1"></div>
+            <div class="gradient-sphere sphere-2"></div>
+        </div>
+
+        <section class="section" id="prestations-flip" style="padding-top: 150px; padding-bottom: 4rem; position: relative; z-index: 10;">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                    <span class="section-tag" data-aos="fade-down">EN CENTRE OU À DOMICILE</span>
+                    <h1 class="section-title" data-aos="fade-up">Prestations & Tarifs</h1>
+                    
+                    <div class="category-selector" data-aos="fade-up" data-aos-delay="100">
+                        <button class="cat-btn active" onclick="filterCategory('auto')">Automobile</button>
+                        <button class="cat-btn" onclick="filterCategory('domicile')">Mobilier</button>
+                    </div>
+                </div>
+                
+                <div class="flip-grid-container" id="mainGrid" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="flip-card-wrapper service-card-single" data-type="auto">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/passager_apres.webp" alt="Après Nettoyage Express">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/passager_avant.webp" alt="Avant Nettoyage Express">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">10 à 30 MIN | Dès 5€</div>
+                                    <h3 class="service-title">Nettoyage Express</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Nettoyage Express</h3>
+                                    <p class="service-description">Des prestations rapides et ciblées pour un entretien efficace au quotidien.</p>
+                                    <ul class="service-features">
+                                        <li>Aspirateur habitacle (5€)</li>
+                                        <li>Aspirateur habitacle + coffre (7€)</li>
+                                        <li>Rénovation 4 panneaux de portes + TDB (10€)</li>
+                                        <li>Aspirateur + coffre + dépoussièrage plastique (20€)</li>
+                                        <li>Shampouinage sièges (5€/siège ou 25€ les 5)</li>
+                                        <li>Shampouinage plafonnier (25€)</li>
+                                    </ul>
+                                    <div class="card-supplement-container">
+                                        <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
+                                            Voir suppléments <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="supp-details-collapse">
+                                            <ul class="supp-list-mini">
+                                                <li><span>Cat. D (+7€) :</span> Peugeot 5008, Tesla Model X...</li>
+                                                <li><span>Cat. E (+10€) :</span> Mercedes Classe V, Trafic...</li>
+                                                <li><span>Véhicules trés sales (+5€) :</span> poils d'animaux...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="auto">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/tableau_bord_apres.webp" alt="Après Intérieur Simple">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/tableau_bord_avant.webp" alt="Avant Intérieur Simple">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">1H30 | 30€</div>
+                                    <h3 class="service-title">Intérieur Simple</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Intérieur Simple</h3>
+                                    <p class="service-description">Le pack essentiel pour retrouver un habitacle propre et sain.</p>
+                                    <ul class="service-features">
+                                        <li>Aspirateur complet & Vitres</li>
+                                        <li>Nettoyage & Rénovation des plastiques</li>
+                                        <li>Contours de portes et de coffre</li>
+                                        <li>Nettoyage pare-brise</li>
+                                    </ul>
+                                    <div class="card-supplement-container">
+                                        <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
+                                            Voir suppléments <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="supp-details-collapse">
+                                            <ul class="supp-list-mini">
+                                                <li><span>Cat. A (Inclus) :</span> Fiat 500, Smart, Clio 3...</li>
+                                                <li><span>Cat. B (+10€) :</span> Clio 5, Peugeot 308...</li>
+                                                <li><span>Cat. C (+15€) :</span> Peugeot 3008, Captur...</li>
+                                                <li><span>Cat. D (+20€) :</span> Peugeot 5008, Tesla X...</li>
+                                                <li><span>Cat. E (+30€) :</span> Classe V, Ford Custom...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="auto">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/conducteur_bm_apres.webp" alt="Après Intérieur Complet">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/conducteur_bm_avant.webp" alt="Avant Intérieur Complet">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">2H00 | 40€</div>
+                                    <h3 class="service-title">Intérieur Complet</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Intérieur Complet</h3>
+                                    <p class="service-description">Notre best-seller pour un habitacle comme neuf, incluant le shampouinage.</p>
+                                    <ul class="service-features">
+                                        <li>Aspirateur complet & Vitres</li>
+                                        <li>Nettoyage & Rénovation des plastiques</li>
+                                        <li>Contours de portes et coffre</li>
+                                        <li>Shampouinage complet des sièges</li>
+                                        <li>Application brillant pneus</li>
+                                    </ul>
+                                    <div class="card-supplement-container">
+                                        <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
+                                            Voir suppléments <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="supp-details-collapse">
+                                            <ul class="supp-list-mini">
+                                                <li><span>Cat. A (Inclus) :</span> Fiat 500, Smart...</li>
+                                                <li><span>Cat. B (+10€) :</span> Clio 5, 308...</li>
+                                                <li><span>Cat. C (+15€) :</span> 3008, Captur...</li>
+                                                <li><span>Cat. D (+20€) :</span> 5008, Model X...</li>
+                                                <li><span>Cat. E (+30€) :</span> Classe V, Custom...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="auto">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/passager_bm_apres.webp" alt="Après Intérieur + Extérieur">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/passager_bm_avant.webp" alt="Avant Intérieur + Extérieur">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">2H30 | 60€</div>
+                                    <h3 class="service-title">Intérieur + Extérieur</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Int. + Extérieur</h3>
+                                    <p class="service-description">La remise à neuf totale de votre véhicule, dedans comme dehors.</p>
+                                    <ul class="service-features">
+                                        <li><strong>Inclus : Intérieur Complet</strong></li>
+                                        <li>Nettoyage carrosserie</li>
+                                        <li>Lustrage carrosserie</li>
+                                        <li>Nettoyage détaillé des jantes</li>
+                                    </ul>
+                                    <div class="card-supplement-container">
+                                        <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
+                                            Voir suppléments <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="supp-details-collapse">
+                                            <ul class="supp-list-mini">
+                                                <li><span>Cat. B (+10€)</span> | <span>Cat. C (+15€)</span></li>
+                                                <li><span>Cat. D (+20€)</span> | <span>Cat. E (+30€)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="auto">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after focus-left">
+                                        <img src="pictures/exterieur_apres.webp" alt="Après Nettoyage Extérieur">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before focus-left focus-down">
+                                        <img src="pictures/exterieur_avant.webp" style="filter: brightness(0.9);" alt="Avant Extérieur">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">30 MIN | 20€</div>
+                                    <h3 class="service-title">Nettoyage Extérieur</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Nettoyage Extérieur</h3>
+                                    <p class="service-description">Une remise au propre complète de l'extérieur pour un véhicule éclatant.</p>
+                                    <ul class="service-features">
+                                        <li>Nettoyage en profondeur carrosserie</li>
+                                        <li>Lustrage de la carrosserie</li>
+                                        <li>Nettoyage détaillé des jantes</li>
+                                    </ul>
+                                    <div class="card-supplement-container">
+                                        <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
+                                            Voir suppléments <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="supp-details-collapse">
+                                            <ul class="supp-list-mini">
+                                                <li><span>Cat. B (+5€)</span> | <span>Cat. C (+10€)</span></li>
+                                                <li><span>Cat. D (+20€)</span> | <span>Cat. E (+30€)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="domicile">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/canape_apres.webp" alt="Canapé propre">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/canape_avant.webp" alt="Canapé sale">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">Dès 20€</div>
+                                    <h3 class="service-title">Canapé</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Canapé</h3>
+                                    <p class="service-description">Nettoyer son canapé, c’est éliminer taches, bactéries et allergènes.</p>
+                                    <ul class="service-features">
+                                        <li>Aspiration & Décontamination vapeur</li>
+                                        <li>Elimination 99% acariens et taches</li>
+                                        <li>Application produits & brossage</li>
+                                        <li>Injecteur/extracteur</li>
+                                    </ul>
+                                    <ul class="supp-list-mini" style="margin-top: 15px;">
+                                        <li>1 place: 20€ | 2 places: 40€</li>
+                                        <li>3 places: 50€ | 4 à 5 pl: 60€</li>
+                                        <li>Angle 3/4pl: 70€ | Angle 5/6pl: 80€</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="domicile">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after focus-center">
+                                        <img src="pictures/tapis_apres.webp" alt="Tapis propre">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before focus-down ">
+                                        <img src="pictures/tapis_avant.webp" alt="Tapis sale">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">Dès 30€</div>
+                                    <h3 class="service-title">Tapis</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Tapis</h3>
+                                    <p class="service-description">Redonnez une seconde vie à vos tapis.</p>
+                                    <ul class="service-features">
+                                        <li>Aspiration & Décontamination vapeur</li>
+                                        <li>Elimination 99% acariens et taches</li>
+                                        <li>Application produits & brossage</li>
+                                        <li>Injecteur/extracteur</li>
+                                    </ul>
+                                    <ul class="supp-list-mini" style="margin-top: 15px;">
+                                        <li>Petit tapis : 30€</li>
+                                        <li>Moyen tapis : 45€</li>
+                                        <li>Grand tapis : 60€</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card-wrapper service-card-single" data-type="domicile">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="comparison-slider">
+                                    <div class="c-image c-after">
+                                        <img src="pictures/matelas_apres.webp" alt="Matelas propre">
+                                        <span class="c-label">APRÈS</span>
+                                    </div>
+                                    <div class="c-image c-before">
+                                        <img src="pictures/matelas_avant.webp" alt="Matelas sale">
+                                        <span class="c-label">AVANT</span>
+                                    </div>
+                                    <div class="c-handle">
+                                        <div class="c-line"></div>
+                                        <div class="c-circle">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 8 3 12 7 16"></polyline><polyline points="17 8 21 12 17 16"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-front-info">
+                                    <div class="service-price-tag">Dès 40€</div>
+                                    <h3 class="service-title">Matelas</h3>
+                                    <button class="btn-flip" onclick="toggleCardFlip(this)">
+                                        Voir les détails <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <button class="btn-flip-close" onclick="toggleCardFlip(this)"><i class="fas fa-times"></i></button>
+                                <div class="flip-back-content">
+                                    <h3 class="service-title" style="color: var(--primary); font-size: 1.2rem;">Matelas</h3>
+                                    <p class="service-description">Un nettoyage en profondeur pour une literie plus saine.</p>
+                                    <ul class="service-features">
+                                        <li>Aspiration & Décontamination vapeur</li>
+                                        <li>Elimination 99% acariens et taches</li>
+                                        <li>Application produits & brossage</li>
+                                        <li>Injecteur/extracteur</li>
+                                    </ul>
+                                    <ul class="supp-list-mini" style="margin-top: 15px;">
+                                        <li>140x190: 40€ | 160x200: 50€</li>
+                                        <li>180x200: 70€ | 200x200: 80€</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact" style="padding: 4rem 0 3rem 0; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 3rem;">
+                    <span class="section-tag" data-aos="fade-down">CONTACT</span>
+                    <h2 class="section-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">Prêt à prendre rendez-vous ?</h2>
+                </div>
+
+                <div class="contact-block" style="margin-bottom: 3rem;">
+                    <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-gray); margin-bottom: 1.5rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;" data-aos="fade-up">Nous contacter</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 1050px; margin: 0 auto;">
+                        <a href="tel:0650782684" class="info-item clickable-card" data-aos="fade-up" style="flex-direction: row; text-align: left; padding: 1rem; align-items: center;">
+                            <div class="info-icon" style="margin-bottom: 0; width: 45px; height: 45px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                            <div class="info-text" style="display: flex; flex-direction: column;">
+                                <div class="info-label" style="margin-bottom: 2px;">Téléphone</div>
+                                <div class="info-value" style="font-size: 1rem; margin-bottom: 0;">06 50 78 26 84</div>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/33650782684" target="_blank" class="info-item clickable-card" data-aos="fade-up" data-aos-delay="50" style="flex-direction: row; text-align: left; padding: 1rem; align-items: center;">
+                            <div class="info-icon" style="margin-bottom: 0; width: 45px; height: 45px;"><svg width="24" height="24" viewBox="0 0 448 512" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.6-27.6-16.5-14.7-27.6-32.8-30.8-38.4-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.8-5.7 5.7-9.4 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.5 9.2 31.5 11.8 13.3 4.2 25.5 3.6 35.2 2.2 10.8-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" /></svg></div>
+                            <div class="info-text" style="display: flex; flex-direction: column;">
+                                <div class="info-label" style="margin-bottom: 2px;">WhatsApp</div>
+                                <span class="info-action" style="margin-top: 0; font-size: 0.85rem;">Message direct →</span>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/cleanwashandcoo" target="_blank" class="info-item clickable-card" data-aos="fade-up" data-aos-delay="100" style="flex-direction: row; text-align: left; padding: 1rem; align-items: center;">
+                            <div class="info-icon" style="color: #E1306C; margin-bottom: 0; width: 45px; height: 45px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
+                            <div class="info-text" style="display: flex; flex-direction: column;">
+                                <div class="info-label" style="margin-bottom: 2px;">Instagram</div>
+                                <span class="info-action" style="margin-top: 0; font-size: 0.85rem;">Nos travaux →</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-clean">CLEAN</span>
+                        <span class="logo-wash">WASH</span>
+                        <span class="logo-co">& CO</span>
+                    </div>
+                    <p class="footer-tagline">L'excellence en nettoyage automobile, canapé, matelas et tapis</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clean Wash & Co. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Retour en haut">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6" /></svg>
+    </button>
+    
+    <script src="script.js"></script>
+</body>
+</html>
